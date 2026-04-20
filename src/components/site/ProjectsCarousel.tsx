@@ -18,21 +18,21 @@ export default function ProjectsCarousel() {
       title: "PulseChat",
       subtitle:
         "Главный экран с диалогами и группами, разделёнными по категориям",
-      image: "/cases/pulsechat.png",
+      image: "/cases/PulseChat.png",
       mode: "bottom",
     },
     {
       title: "SyncRoom",
       subtitle:
         "Концепт приложения для видеовстреч. Панель позволяет быстро включать камеру и микрофон ",
-      image: "/cases/syncroom.png",
+      image: "/cases/SyncRoom.png",
       mode: "top",
     },
     {
       title: "EchoTalk",
       subtitle:
         "Личный чат с акцентом на голосовые сообщения и встроенный аудиоплеер",
-      image: "/cases/echotalk.png",
+      image: "/cases/EchoTalk.png",
       mode: "bottom",
     },
     {
