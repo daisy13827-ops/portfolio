@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 type ExperienceBlockProps = {
   companyName: string;
   dateRange: string;
-  logoSrc?: string; // 👈 теперь это КАРТИНКА
+  logoSrc?: string;
   children?: ReactNode;
 };
 
@@ -15,13 +15,14 @@ export default function ExperienceBlock({
 }: ExperienceBlockProps) {
   return (
     <section className="w-full">
+      {/* MAIN CARD */}
       <div className="rounded-3xl bg-white p-6 sm:p-8">
 
         {/* HEADER */}
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-4 justify-start">
 
-          {/* LOGO IMAGE */}
-          <div className="h-16 w-16 shrink-0 overflow-hidden rounded-xl bg-black/5 flex items-center justify-center">
+          {/* LOGO */}
+          <div className="h-16 w-16 shrink-0 overflow-hidden rounded-[16px] bg-black/5 flex items-center justify-center">
             {logoSrc ? (
               <img
                 src={logoSrc}
@@ -45,7 +46,7 @@ export default function ExperienceBlock({
             </div>
 
             <div
-              className="mt-1 text-[20px] leading-[28px] tracking-[0.7px] text-black/40 font-semibold"
+              className="mt-[4px] text-[20px] leading-[28px] tracking-[0.7px] text-black/40 font-semibold"
               style={{
                 fontFamily:
                   '"SF Pro Rounded", system-ui, -apple-system, Arial, sans-serif',
