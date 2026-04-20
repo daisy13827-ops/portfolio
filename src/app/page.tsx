@@ -34,11 +34,11 @@ export default function HomePage() {
 
       {/* SBER */}
       <section className="mt-[80px]">
-        <ExperienceBlock
-          companyName="Сбер Инвестиции"
-          dateRange="Сентябрь 2023 — Октябрь 2025"
-        />
-
+      <ExperienceBlock
+  companyName="Сбер Инвестиции"
+  dateRange="Сентябрь 2023 — Октябрь 2025"
+  logoSrc="/cases/sber.png"
+/>
         <div className="mt-[32px] grid grid-cols-1 gap-[24px] md:grid-cols-2">
 
           <div className="rounded-2xl border border-black/10 p-4">
@@ -75,6 +75,7 @@ export default function HomePage() {
         <ExperienceBlock
           companyName="Открытие Брокер"
           dateRange="Январь 2021 — Декабрь 2023"
+          logoSrc="/cases/opening.png"
         />
 
         <div className="mt-[32px]">
@@ -93,6 +94,7 @@ export default function HomePage() {
         <ExperienceBlock
           companyName="MTS"
           dateRange="Июнь 2023 — Август 2023"
+          logoSrc="/cases/mts.png"
         />
 
         <div className="mt-[32px] grid grid-cols-1 gap-[24px] md:grid-cols-2">

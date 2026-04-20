@@ -3,43 +3,64 @@ import type { ReactNode } from "react";
 type ExperienceBlockProps = {
   companyName: string;
   dateRange: string;
-  logo?: ReactNode;
+  logoSrc?: string; // 👈 теперь это КАРТИНКА
   children?: ReactNode;
 };
 
 export default function ExperienceBlock({
   companyName,
   dateRange,
-  logo,
+  logoSrc,
   children,
 }: ExperienceBlockProps) {
   return (
     <section className="w-full">
-      <div className="rounded-3xl border border-black/5 bg-white/60 p-5 sm:p-7">
+      <div className="rounded-3xl bg-white p-6 sm:p-8">
+
+        {/* HEADER */}
         <div className="flex items-center gap-4">
-          <div className="h-16 w-16 shrink-0 rounded-2xl border border-black/10 bg-black/5">
-            <div className="flex h-full w-full items-center justify-center">
-              {logo ?? (
-                <span className="text-[10px] font-semibold text-gray-700">
-                  Logo
-                </span>
-              )}
-            </div>
+
+          {/* LOGO IMAGE */}
+          <div className="h-16 w-16 shrink-0 overflow-hidden rounded-xl bg-black/5 flex items-center justify-center">
+            {logoSrc ? (
+              <img
+                src={logoSrc}
+                alt={companyName}
+                className="h-full w-full object-cover"
+              />
+            ) : null}
           </div>
 
-          <div className="min-w-0">
-            <div className="truncate text-base font-semibold tracking-[-0.02em] text-gray-900">
+          {/* TEXT */}
+          <div className="min-w-0 text-left">
+
+            <div
+              className="text-[28px] leading-[36px] tracking-[0.7px] font-semibold text-black"
+              style={{
+                fontFamily:
+                  '"SF Pro Rounded", system-ui, -apple-system, Arial, sans-serif',
+              }}
+            >
               {companyName}
             </div>
-            <div className="mt-1 text-sm text-gray-600">{dateRange}</div>
+
+            <div
+              className="mt-1 text-[20px] leading-[28px] tracking-[0.7px] text-black/40 font-semibold"
+              style={{
+                fontFamily:
+                  '"SF Pro Rounded", system-ui, -apple-system, Arial, sans-serif',
+              }}
+            >
+              {dateRange}
+            </div>
+
           </div>
         </div>
 
-        {children ? (
-          <div className="mt-6">{children}</div>
-        ) : null}
+        {/* CONTENT */}
+        {children ? <div className="mt-[50px]">{children}</div> : null}
+
       </div>
     </section>
   );
 }
-
