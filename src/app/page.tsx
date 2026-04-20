@@ -137,14 +137,13 @@ export default function HomePage() {
 
       <Spacer h={50} />
 
-      <CaseGrid>
-        <CaseCard
-          img="/cases/opening-1.png"
-          title="ДОС"
-          subtitle="Дистанционное открытие счета (B2C • FinTech)"
-        />
-      </CaseGrid>
-
+      <div className="w-full">
+  <CaseCard
+    img="/cases/opening-1.png"
+    title="ДОС"
+    subtitle="Дистанционное открытие счета (B2C • FinTech)"
+  />
+</div>
       {/* ===== 80 ===== */}
       <Spacer h={80} />
 
