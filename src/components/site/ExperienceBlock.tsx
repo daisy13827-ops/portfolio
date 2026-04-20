@@ -1,55 +1,44 @@
-import type { ReactNode } from "react";
+import Image from "next/image";
 
 type ExperienceBlockProps = {
   companyName: string;
   dateRange: string;
   logoSrc?: string;
-  children?: ReactNode;
 };
 
 export default function ExperienceBlock({
   companyName,
   dateRange,
   logoSrc,
-  children,
 }: ExperienceBlockProps) {
   return (
-    <section className="w-full flex flex-col items-start">
+    <section className="w-full">
 
-      {/* HEADER */}
-      <div className="flex items-start gap-4 w-full">
+      <div className="flex items-center gap-4">
 
-        {/* LOGO */}
-        <div className="h-16 w-16 shrink-0 overflow-hidden rounded-[16px] bg-black/5 flex items-center justify-center">
-          {logoSrc ? (
-            <img
+        <div className="h-16 w-16 overflow-hidden rounded-[16px] bg-black/5 flex items-center justify-center">
+          {logoSrc && (
+            <Image
               src={logoSrc}
               alt={companyName}
-              className="h-full w-full object-cover"
+              width={64}
+              height={64}
+              className="object-contain"
             />
-          ) : null}
+          )}
         </div>
 
-        {/* TEXT */}
-        <div className="flex flex-col items-start text-left">
-
-          <div className="text-[28px] leading-[36px] tracking-[0.7px] font-semibold text-black">
+        <div className="text-left">
+          <div className="text-[28px] leading-[36px] font-semibold tracking-[0.7px] text-black">
             {companyName}
           </div>
 
-          <div className="mt-[4px] text-[20px] leading-[28px] tracking-[0.7px] text-black/40 font-semibold">
+          <div className="mt-[4px] text-[20px] leading-[28px] font-semibold tracking-[0.7px] text-black/40">
             {dateRange}
           </div>
-
         </div>
+
       </div>
-
-      {/* CONTENT */}
-      {children ? (
-        <div className="mt-[50px] w-full">
-          {children}
-        </div>
-      ) : null}
 
     </section>
   );

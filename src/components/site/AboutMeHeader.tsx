@@ -19,7 +19,7 @@ export default function AboutMeHeader() {
       </div>
 
       {/* BOTTOM ROW */}
-      <div className="mt-[80px] flex flex-col md:flex-row items-start gap-[48px]">
+      <div className="mt-[80px] w-full flex items-start justify-between gap-[48px]">
 
         {/* LEFT TEXT */}
         <div className="flex flex-col text-black max-w-[820px] text-left">
@@ -35,7 +35,7 @@ export default function AboutMeHeader() {
         </div>
 
         {/* RIGHT LINKS */}
-        <div className="flex flex-col gap-[4px] items-start text-left font-semibold">
+        <div className="flex flex-col gap-[4px] font-semibold ml-auto text-right">
 
           <a className="text-[20px] leading-[32px] tracking-[0.7px] text-black hover:opacity-80">
             Telegram
@@ -49,9 +49,9 @@ export default function AboutMeHeader() {
             Dribbble
           </a>
 
-          <a className="flex items-center gap-[4px] text-[20px] leading-[32px] tracking-[0.7px] text-black hover:opacity-80">
+          <a className="flex items-center justify-end gap-[4px] text-[20px] leading-[32px] tracking-[0.7px] text-black hover:opacity-80">
             <span>CV</span>
-            <img src="/cv-icon.svg" alt="CV icon" className="w-[24px] h-[24px]" />
+            <img src="/cv-icon.svg" className="w-[24px] h-[24px]" />
           </a>
 
         </div>
