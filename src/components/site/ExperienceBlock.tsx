@@ -13,9 +13,7 @@ export default function ExperienceBlock({
 }: ExperienceBlockProps) {
   return (
     <section className="w-full">
-
       <div className="flex items-center gap-4">
-
         <div className="h-16 w-16 overflow-hidden rounded-[16px] bg-black/5 flex items-center justify-center">
           {logoSrc && (
             <Image
@@ -37,9 +35,7 @@ export default function ExperienceBlock({
             {dateRange}
           </div>
         </div>
-
       </div>
-
     </section>
   );
 }

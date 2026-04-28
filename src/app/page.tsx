@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 import Container from "@/components/site/Container";
@@ -9,23 +10,22 @@ import Footer from "@/components/site/Footer";
 import AboutMeHeader from "@/components/site/AboutMeHeader";
 
 type CaseCardProps = {
+  slug: string;
   img: string;
   title: string;
   subtitle: string;
 };
 
-function CaseCard({ img, title, subtitle }: CaseCardProps) {
+function CaseCard({ slug, img, title, subtitle }: CaseCardProps) {
   return (
-    <div className="flex flex-col w-full">
-      {/* IMAGE */}
+    <Link href={`/cases/${slug}`} className="group flex flex-col w-full cursor-pointer">
       <div className="w-full overflow-hidden rounded-[30px]">
         <img
           src={img}
-          className="w-full h-auto block object-cover"
+          className="w-full h-auto block object-cover transition-transform duration-300 group-hover:scale-105"
         />
       </div>
 
-      {/* TEXT */}
       <div className="px-[30px]">
         <h3
           className="mt-[16px] text-[20px] leading-[28px] tracking-[0.7px] font-bold text-black"
@@ -47,11 +47,10 @@ function CaseCard({ img, title, subtitle }: CaseCardProps) {
           {subtitle}
         </p>
       </div>
-    </div>
+    </Link>
   );
 }
 
-/** Сетка кейсов — ВСЕГДА стабильная */
 function CaseGrid({ children }: { children: React.ReactNode }) {
   return (
     <div className="w-full grid grid-cols-1 lg:grid-cols-2 gap-[24px]">
@@ -64,7 +63,7 @@ function Spacer({ h }: { h: number }) {
   return <div style={{ height: h }} />;
 }
 
-export default function HomePage() {
+export default function Page() {
   const [showTopButton, setShowTopButton] = useState(false);
 
   useEffect(() => {
@@ -81,29 +80,28 @@ export default function HomePage() {
     <Container>
       <AboutMeHeader />
 
-      {/* 80 */}
       <Spacer h={80} />
       <ProjectsCarousel />
 
-      {/* ===== SBER ===== */}
+      {/* SBER */}
       <Spacer h={80} />
-
       <ExperienceBlock
         companyName="Сбер Инвестиции"
         dateRange="Сентябрь 2023 — Октябрь 2025"
         logoSrc="/cases/sber.png"
       />
 
-      {/* 50 */}
       <Spacer h={50} />
 
       <CaseGrid>
         <CaseCard
+          slug="sber-feed-and-social"
           img="/cases/sber-1.png"
           title="Редизайн Сбер Инвестиции"
           subtitle="Новостная лента и социальные механики (B2C • FinTech)"
         />
         <CaseCard
+          slug="sber-post-entry"
           img="/cases/sber-2.png"
           title="Редизайн Сбер Инвестиции"
           subtitle="Точка входа в написание поста (B2C • FinTech)"
@@ -114,21 +112,21 @@ export default function HomePage() {
 
       <CaseGrid>
         <CaseCard
+          slug="sber-post-editor"
           img="/cases/sber-3.png"
           title="Редизайн Сбер Инвестиции"
           subtitle="Редактор поста (B2C • FinTech)"
         />
         <CaseCard
+          slug="sber-content-moderation"
           img="/cases/sber-4.png"
           title="Редизайн Сбер Инвестиции"
           subtitle="Инструмент модерации контента (B2B • FinTech)"
         />
       </CaseGrid>
 
-      {/* ===== 80 ===== */}
+      {/* OTKRITIE */}
       <Spacer h={80} />
-
-      {/* ===== OTKRITIE ===== */}
       <ExperienceBlock
         companyName="Открытие Брокер"
         dateRange="Январь 2021 — Декабрь 2023"
@@ -138,16 +136,16 @@ export default function HomePage() {
       <Spacer h={50} />
 
       <div className="w-full">
-  <CaseCard
-    img="/cases/opening-1.png"
-    title="ДОС"
-    subtitle="Дистанционное открытие счета (B2C • FinTech)"
-  />
-</div>
-      {/* ===== 80 ===== */}
-      <Spacer h={80} />
+        <CaseCard
+          slug="opening-dos"
+          img="/cases/opening-1.png"
+          title="ДОС"
+          subtitle="Дистанционное открытие счета (B2C • FinTech)"
+        />
+      </div>
 
-      {/* ===== MTS ===== */}
+      {/* MTS */}
+      <Spacer h={80} />
       <ExperienceBlock
         companyName="MTS"
         dateRange="Июнь 2023 — Август 2023"
@@ -158,11 +156,13 @@ export default function HomePage() {
 
       <CaseGrid>
         <CaseCard
+          slug="mts-esim-app"
           img="/cases/mts-1.png"
           title="Цифровые продукты МТС"
           subtitle="Покупка и активация eSIM (B2C • FinTech)"
         />
         <CaseCard
+          slug="mts-esim-bot"
           img="/cases/mts-2.png"
           title="Telegram-бот"
           subtitle="Покупка и регистрация eSIM (B2C • FinTech)"
@@ -173,14 +173,19 @@ export default function HomePage() {
 
       <Footer />
 
-      {showTopButton && (
-        <button
-          onClick={scrollToTop}
-          className="fixed bottom-6 right-6 w-[48px] h-[48px] bg-black text-white rounded-[16px]"
-        >
-          ↑
-        </button>
-      )}
+      {/* 🔥 КНОПКА ВВЕРХ (С ПЛАВНЫМ ПОЯВЛЕНИЕМ + SVG) */}
+      <button
+        onClick={scrollToTop}
+        className={`fixed bottom-6 right-6 z-50 w-[56px] h-[56px] rounded-full flex items-center justify-center transition-all duration-300
+          ${showTopButton ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"}
+        `}
+      >
+        <img
+          src="/icons/arrow-up.svg"
+          alt="Up"
+          className="w-full h-full"
+        />
+      </button>
     </Container>
   );
 }

@@ -1,3 +1,5 @@
+import { links } from "@/data/links";
+
 export default function AboutMeHeader() {
   return (
     <section aria-label="About Me" className="w-full">
@@ -37,19 +39,35 @@ export default function AboutMeHeader() {
         {/* RIGHT LINKS */}
         <div className="flex flex-col gap-[4px] font-semibold ml-auto text-right">
 
-          <a className="text-[20px] leading-[32px] tracking-[0.7px] text-black hover:opacity-80">
+          <a
+            href={links.telegram}
+            target="_blank"
+            className="text-[20px] leading-[32px] tracking-[0.7px] text-black hover:opacity-80"
+          >
             Telegram
           </a>
 
-          <a className="text-[20px] leading-[32px] tracking-[0.7px] text-black hover:opacity-80">
+          <a
+            href={links.linkedin}
+            target="_blank"
+            className="text-[20px] leading-[32px] tracking-[0.7px] text-black hover:opacity-80"
+          >
             LinkedIn
           </a>
 
-          <a className="text-[20px] leading-[32px] tracking-[0.7px] text-black hover:opacity-80">
+          <a
+            href={links.dribbble}
+            target="_blank"
+            className="text-[20px] leading-[32px] tracking-[0.7px] text-black hover:opacity-80"
+          >
             Dribbble
           </a>
 
-          <a className="flex items-center justify-end gap-[4px] text-[20px] leading-[32px] tracking-[0.7px] text-black hover:opacity-80">
+          <a
+            href={links.cv}
+            target="_blank"
+            className="flex items-center justify-end gap-[4px] text-[20px] leading-[32px] tracking-[0.7px] text-black hover:opacity-80"
+          >
             <span>CV</span>
             <img src="/cv-icon.svg" className="w-[24px] h-[24px]" />
           </a>
