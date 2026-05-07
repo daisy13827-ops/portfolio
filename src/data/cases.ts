@@ -3,7 +3,7 @@ export type CaseSection =
       type: "hero";
       summary: string;
     }
-    | {
+  | {
       type: "results";
       title: string;
       items: Array<{
@@ -12,7 +12,7 @@ export type CaseSection =
       }>;
       image: string;
     }
-    | {
+  | {
       type: "context";
       title: string;
       subtitle: Array<{
@@ -21,7 +21,7 @@ export type CaseSection =
       }>;
       image: string;
     }
-    | {
+  | {
       type: "problem";
       title: string;
       cards: Array<{
@@ -34,19 +34,22 @@ export type CaseSection =
   | {
       type: "hypotheses";
       title: string;
-      points: string[];
-      metrics: Array<{
-        label: string;
-        value: string;
-      }>;
-    }
-  | {
-      type: "solution";
-      title: string;
-      columns: Array<{
+      blocks: Array<{
         title: string;
         text: string;
+        bullets: string[];
       }>;
+    }
+    | {
+      type: "solution";
+      title: string;
+      leftCards: Array<{ title: string; text: string }>;
+      image: string;
+      rightCards: Array<{ title: string; text: string }>;
+    }
+    | {
+      type: "why";
+      image: string;
     }
   | {
       type: "gallery";
@@ -95,6 +98,7 @@ export const cases: CaseStudy[] = [
         ],
         image: "/cases/sber-feed-results.png",
       },
+
       {
         type: "context",
         title: "Контекст",
@@ -118,11 +122,11 @@ export const cases: CaseStudy[] = [
         cards: [
           {
             title: "Слабая структура",
-            text: "однотипные карточки без визуальной иерархии",
+            text: "однотипные карточки без визуальной иерархии",
           },
           {
             title: "Теряем пользователей",
-            text: "пользователи не возвращаются в раздел",
+            text: "пользователи не возвращаются в раздел",
           },
           {
             title: "Нет активности",
@@ -130,7 +134,7 @@ export const cases: CaseStudy[] = [
           },
           {
             title: "Низкое вовлечение",
-            text: "лента новостей не вовлекает",
+            text: "лента новостей не вовлекает",
           },
         ],
         image: "/cases/sber-feed-problems.png",
@@ -140,36 +144,82 @@ export const cases: CaseStudy[] = [
       {
         type: "hypotheses",
         title: "Гипотезы",
-        points: [
-          "Упрощение интерфейса повысит вовлечённость",
-          "Снижение когнитивной нагрузки улучшит конверсию",
+        blocks: [
+          {
+            title: "Гипотезы",
+            scenarios: [
+              {
+                text: "Если добавить социальные механики и вариативный контент",
+                bullets: [
+                  "пользователи будут чаще взаимодействовать с лентой",
+                  "увеличится глубина просмотра",
+                ],
+              },
+              {
+                text: "Если пользователи чаще читают и обсуждают новости",
+                bullets: [
+                  "они лучше понимают рынок",
+                  "чаще принимают инвестиционные решения",
+                ],
+              },
+            ],
+          },
+          {
+            title: "Метрики",
+            bullets: [
+              "CTR на карточки",
+              "Глубина скролла",
+              "Количество взаимодействий (лайки, комментарии)",
+              "Retention в раздел",
+              "Время в ленте",
+              "CTR из новости в инструмент (акция/фонд)",
+              "Переходы к карточке инструмента",
+              "Конверсия в покупку после просмотра новости",
+            ],
+          },
         ],
-        metrics: [
-          { label: "Конверсия", value: "+18%" },
-          { label: "Вовлечённость", value: "+27%" },
-        ],
+      },
+      {
+        type: "gallery",
+        images: ["/cases/sber-feed-hypothesis.png"],
       },
 
       {
         type: "solution",
-        title: "Почему / Решение",
-        columns: [
+        title: "Решение",
+      
+        leftCards: [
           {
-            title: "Почему",
-            text: "Проблема требовала системного редизайна UX",
+            title: "Персонализация",
+            text: "Добавлены карточки с контентом: фото, смешанные галереи",
           },
           {
-            title: "Решение",
-            text: "Упрощение интерфейса и логики",
+            title: "Социальные механики",
+            text: "Внедрен просмотрщик изображений и видео",
+          },
+        ],
+      
+        image: "/cases/sber-feed-solution.png",
+      
+        rightCards: [
+          {
+            title: "Новая структура",
+            text: "Добавлены действия к постам",
+          },
+          {
+            title: "Интерактив",
+            text: "Переработаны акценты и иерархия контента",
+          },
+          {
+            title: "Retention",
+            text: "Реализованы реакции, комментарии и обсуждения",
           },
         ],
       },
-
       {
-        type: "gallery",
-        images: ["/cases/sber-feed-why.png"],
+        type: "why",
+        image: "/cases/sber-feed-why.png",
       },
-
       {
         type: "gallery",
         images: ["/cases/sber-feed-end.png"],
