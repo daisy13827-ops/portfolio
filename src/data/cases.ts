@@ -31,14 +31,22 @@ export type CaseSection =
       image: string;
       imageFull: string;
     }
-  | {
+    | {
       type: "hypotheses";
       title: string;
-      blocks: Array<{
-        title: string;
-        text: string;
-        bullets: string[];
-      }>;
+      blocks: Array<
+        | {
+            title: string;
+            scenarios: Array<{
+              text: string;
+              bullets: string[];
+            }>;
+          }
+        | {
+            title: string;
+            bullets: string[];
+          }
+      >;
     }
     | {
       type: "solution";

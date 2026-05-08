@@ -293,6 +293,9 @@ function renderSection(section: CaseSection, slug: string) {
 ========================= */
 
 if (section.type === "hypotheses") {
+  const hypothesisBlock = section.blocks[0];
+  const metricsBlock = section.blocks[1];
+
   return (
     <section className="mt-[80px]">
 
@@ -322,48 +325,49 @@ if (section.type === "hypotheses") {
               color: "#8948F9",
             }}
           >
-            {section.blocks[0].title}
+            {hypothesisBlock.title}
           </div>
 
           <div className="mt-[24px] flex flex-col gap-[24px]">
 
-            {section.blocks[0].scenarios.map((s, i) => (
-              <div key={i}>
+            {"scenarios" in hypothesisBlock &&
+              hypothesisBlock.scenarios.map((s, i) => (
+                <div key={i}>
 
-                <div
-                  style={{
-                    fontFamily: "SF Pro Rounded, sans-serif",
-                    fontSize: "22px",
-                    fontWeight: 600,
-                    lineHeight: "28px",
-                  }}
-                >
-                  {s.text}
+                  <div
+                    style={{
+                      fontFamily: "SF Pro Rounded, sans-serif",
+                      fontSize: "22px",
+                      fontWeight: 600,
+                      lineHeight: "28px",
+                    }}
+                  >
+                    {s.text}
+                  </div>
+
+                  <ul className="mt-[12px] flex flex-col gap-[6px]">
+                    {s.bullets.map((b, idx) => (
+                      <li key={idx} className="flex gap-[10px] items-start">
+
+                        <div className="w-[6px] h-[6px] bg-black rounded-full mt-[10px]" />
+
+                        <div
+                          style={{
+                            fontFamily: "SF Pro Rounded, sans-serif",
+                            fontSize: "22px",
+                            fontWeight: 600,
+                            lineHeight: "28px",
+                          }}
+                        >
+                          {b}
+                        </div>
+
+                      </li>
+                    ))}
+                  </ul>
+
                 </div>
-
-                <ul className="mt-[12px] flex flex-col gap-[6px]">
-                  {s.bullets.map((b, idx) => (
-                    <li key={idx} className="flex gap-[10px] items-start">
-
-                      <div className="w-[6px] h-[6px] bg-black rounded-full mt-[10px]" />
-
-                      <div
-                        style={{
-                          fontFamily: "SF Pro Rounded, sans-serif",
-                          fontSize: "22px",
-                          fontWeight: 600,
-                          lineHeight: "28px",
-                        }}
-                      >
-                        {b}
-                      </div>
-
-                    </li>
-                  ))}
-                </ul>
-
-              </div>
-            ))}
+              ))}
 
           </div>
         </div>
@@ -379,28 +383,31 @@ if (section.type === "hypotheses") {
               color: "#8948F9",
             }}
           >
-            {section.blocks[1].title}
+            {metricsBlock.title}
           </div>
 
           <div className="mt-[24px] flex flex-col gap-[6px]">
-            {section.blocks[1].bullets.map((b, i) => (
-              <div key={i} className="flex gap-[10px] items-start">
 
-                <div className="w-[6px] h-[6px] bg-black rounded-full mt-[10px]" />
+            {"bullets" in metricsBlock &&
+              metricsBlock.bullets.map((b, i) => (
+                <div key={i} className="flex gap-[10px] items-start">
 
-                <div
-                  style={{
-                    fontFamily: "SF Pro Rounded, sans-serif",
-                    fontSize: "22px",
-                    fontWeight: 600,
-                    lineHeight: "28px",
-                  }}
-                >
-                  {b}
+                  <div className="w-[6px] h-[6px] bg-black rounded-full mt-[10px]" />
+
+                  <div
+                    style={{
+                      fontFamily: "SF Pro Rounded, sans-serif",
+                      fontSize: "22px",
+                      fontWeight: 600,
+                      lineHeight: "28px",
+                    }}
+                  >
+                    {b}
+                  </div>
+
                 </div>
+              ))}
 
-              </div>
-            ))}
           </div>
 
         </div>
