@@ -687,12 +687,12 @@ export default function CaseClient({ currentCase }: any) {
 
   <span> · </span>
 
-  {currentCase.tags?.map((tag, i) => (
-    <span key={i}>
-      {tag}
-      {i !== currentCase.tags.length - 1 && <span> · </span>}
-    </span>
-  ))}
+  {currentCase.tags?.map((tag: string, i: number) => (
+  <span key={i}>
+    {tag}
+    {i !== currentCase.tags.length - 1 && <span> · </span>}
+  </span>
+))}
 </p>
         </div>
 
