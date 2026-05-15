@@ -1,6 +1,6 @@
 export default function Footer() {
   return (
-    <footer className="p-[20px] pb-[80px]">
+    <footer className="p-[20px] pb-[2px]">
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-[20px]">
 
         {/* LEFT */}
