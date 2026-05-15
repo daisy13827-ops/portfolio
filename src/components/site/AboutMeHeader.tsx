@@ -2,7 +2,7 @@ import { links } from "@/data/links";
 
 export default function AboutMeHeader() {
   return (
-    <section aria-label="About Me" className="w-full">
+    <section aria-label="About Me" className="w-full pt-[50px]">
 
       {/* TOP ROW */}
       <div className="flex items-center gap-3">

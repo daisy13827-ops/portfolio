@@ -3,14 +3,14 @@ export type CaseSection =
       type: "hero";
       summary: string;
     }
-  | {
+    | {
       type: "results";
       title: string;
       items: Array<{
         label: string;
         description: string;
       }>;
-      image: string;
+      image?: string;
     }
   | {
       type: "context";
@@ -227,6 +227,24 @@ export const cases: CaseStudy[] = [
       {
         type: "why",
         image: "/cases/sber-feed-why.png",
+      },
+      {
+        type: "results",
+        title: "Результаты",
+        items: [
+          {
+            label: "Полный цикл",
+            description: "от бенчмаркинга до готовых к разработке спецификаций",
+          },
+          {
+            label: "Этап тестирования",
+            description: "запустили продукт на тестовый контур",
+          },
+          {
+            label: "Редизайн",
+            description: "Обновила интерфейс и улучшила UX",
+          },
+        ],
       },
       {
         type: "gallery",

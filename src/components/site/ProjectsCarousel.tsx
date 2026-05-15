@@ -2,7 +2,6 @@
 
 import { useEffect, useRef } from "react";
 
-// 👇 ФИКС ВИСЯЧИХ ПРЕДЛОГОВ
 const fixOrphans = (text: string) => {
   return text.replace(
     / (и|в|на|с|к|у|о|об|от|до|из|за) /g,
@@ -47,30 +46,37 @@ export default function ProjectsCarousel() {
     const el = scrollRef.current;
     if (!el) return;
 
-    let id: number;
-    const speed = 0.5;
+    let raf: number;
+    const speed = 0.25;
 
     const loop = () => {
+      if (!el) return;
+
       el.scrollLeft += speed;
-      id = requestAnimationFrame(loop);
+
+      raf = requestAnimationFrame(loop);
     };
 
-    id = requestAnimationFrame(loop);
-    return () => cancelAnimationFrame(id);
+    raf = requestAnimationFrame(loop);
+
+    return () => cancelAnimationFrame(raf);
   }, []);
 
   return (
-    <section className="mt-[80px]">
+    <section className="w-full">
+      
+      {/* 🔥 ВАЖНО: ТОЛЬКО overflow-x-auto */}
       <div
         ref={scrollRef}
         className="flex gap-[24px] overflow-x-auto scrollbar-hide"
       >
+
         {items.map((item, i) => (
           <div
             key={item.title + i}
             className="flex flex-col shrink-0 w-[453px] h-[650px]"
           >
-            {/* IMAGE BLOCK */}
+            {/* IMAGE */}
             <div className="h-[550px] rounded-[30px] bg-[#EDEDED] overflow-hidden flex">
               {item.image ? (
                 item.mode === "top" ? (
@@ -98,27 +104,22 @@ export default function ProjectsCarousel() {
             {/* TEXT */}
             <div className="mt-[16px] flex flex-col gap-[4px]">
               <h3
-                className="text-[#000] text-[20px] leading-[28px] tracking-[0.7px] font-semibold break-words"
-                style={{
-                  fontFamily:
-                    '"SF Pro Rounded", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif',
-                }}
+                className="text-[20px] leading-[28px] tracking-[0.7px] font-semibold text-black"
+                style={{ fontFamily: '"SF Pro Rounded", system-ui, sans-serif' }}
               >
                 {item.title}
               </h3>
 
               <p
-                className="text-[#000]/40 text-[18px] leading-[22px] tracking-[0.7px] font-normal break-words"
-                style={{
-                  fontFamily:
-                    '"SF Pro Rounded", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif',
-                }}
+                className="text-[18px] leading-[22px] tracking-[0.7px] font-normal text-black/40"
+                style={{ fontFamily: '"SF Pro Rounded", system-ui, sans-serif' }}
               >
                 {fixOrphans(item.subtitle)}
               </p>
             </div>
           </div>
         ))}
+
       </div>
     </section>
   );
