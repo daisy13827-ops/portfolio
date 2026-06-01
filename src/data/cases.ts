@@ -3,7 +3,7 @@ export type CaseSection =
       type: "hero";
       summary: string;
     }
-    | {
+  | {
       type: "results";
       title: string;
       items: Array<{
@@ -29,9 +29,9 @@ export type CaseSection =
         text: string;
       }>;
       image: string;
-      imageFull: string;
+      imageFull?: string;
     }
-    | {
+  | {
       type: "hypotheses";
       title: string;
       blocks: Array<
@@ -48,14 +48,14 @@ export type CaseSection =
           }
       >;
     }
-    | {
+  | {
       type: "solution";
       title: string;
       leftCards: Array<{ title: string; text: string }>;
       image: string;
       rightCards: Array<{ title: string; text: string }>;
     }
-    | {
+  | {
       type: "why";
       image: string;
     }
@@ -79,11 +79,9 @@ export type CaseStudy = {
 export const cases: CaseStudy[] = [
   {
     slug: "sber-feed-and-social",
-
     title: "Новостная лента и социальные механики",
     company: "Сбер Инвестиции",
     tags: ["iOS", "Android", "B2C", "Fintech", "2025"],
-
     heroImage: "/cases/sber-feed-hero.png",
 
     sections: [
@@ -93,15 +91,15 @@ export const cases: CaseStudy[] = [
         items: [
           {
             label: "Полный цикл",
-            description: "от бенчмаркинга до готовых к разработке спецификаций",
+            description: "от бенчмаркинга до готовых к разработке спецификаций",
           },
           {
             label: "Этап тестирования",
-            description: "запустили продукт на тестовый контур",
+            description: "запустили продукт на тестовый контур",
           },
           {
             label: "Редизайн",
-            description: "обновила интерфейс и улучшила UX",
+            description: "обновила интерфейс и улучшила UX",
           },
         ],
         image: "/cases/sber-feed-results.png",
@@ -157,14 +155,14 @@ export const cases: CaseStudy[] = [
             title: "Гипотезы",
             scenarios: [
               {
-                text: "Если добавить социальные механики и вариативный контент",
+                text: "Если добавить социальные механики и вариативный контент",
                 bullets: [
                   "пользователи будут чаще взаимодействовать с лентой",
                   "увеличится глубина просмотра",
                 ],
               },
               {
-                text: "Если пользователи чаще читают и обсуждают новости",
+                text: "Если пользователи чаще читают и обсуждают новости",
                 bullets: [
                   "они лучше понимают рынок",
                   "чаще принимают инвестиционные решения",
@@ -187,6 +185,7 @@ export const cases: CaseStudy[] = [
           },
         ],
       },
+
       {
         type: "gallery",
         images: ["/cases/sber-feed-hypothesis.png"],
@@ -195,60 +194,227 @@ export const cases: CaseStudy[] = [
       {
         type: "solution",
         title: "Решение",
-      
         leftCards: [
           {
             title: "Персонализация",
-            text: "Добавлены карточки с контентом: фото, смешанные галереи",
+            text: "Добавлены карточки с контентом: фото, смешанные галереи",
           },
           {
             title: "Социальные механики",
             text: "Внедрен просмотрщик изображений и видео",
           },
         ],
-      
         image: "/cases/sber-feed-solution.png",
-      
         rightCards: [
           {
             title: "Новая структура",
-            text: "Добавлены действия к постам",
+            text: "Добавлены действия к постам",
           },
           {
             title: "Интерактив",
-            text: "Переработаны акценты и иерархия контента",
+            text: "Переработаны акценты и иерархия контента",
           },
           {
             title: "Retention",
-            text: "Реализованы реакции, комментарии и обсуждения",
+            text: "Реализованы реакции, комментарии и обсуждения",
           },
         ],
       },
+
       {
         type: "why",
         image: "/cases/sber-feed-why.png",
       },
+
       {
         type: "results",
         title: "Результаты",
         items: [
           {
             label: "Полный цикл",
-            description: "от бенчмаркинга до готовых к разработке спецификаций",
+            description: "от бенчмаркинга до готовых к разработке спецификаций",
           },
           {
             label: "Этап тестирования",
-            description: "запустили продукт на тестовый контур",
+            description: "запустили продукт на тестовый контур",
           },
           {
             label: "Редизайн",
-            description: "Обновила интерфейс и улучшила UX",
+            description: "Обновила интерфейс и улучшила UX",
           },
         ],
       },
+
       {
         type: "gallery",
         images: ["/cases/sber-feed-end.png"],
+      },
+
+      {
+        type: "navigation",
+      },
+    ],
+  },
+
+  // ✅ ВОТ ТВОЙ ВТОРОЙ КЕЙС — ПРАВИЛЬНО ВСТАВЛЕН В МАССИВ
+
+  {
+    slug: "sber-post-entry-v2",
+    title: "Точка входа в написание поста",
+    company: "Сбер Инвестиции",
+    tags: ["iOS", "Android", "B2C", "FinTech", "2025"],
+    heroImage: "/cases/sber-post-entry-hero.png",
+
+    sections: [
+      {
+        type: "results",
+        title: "Результаты",
+        items: [
+          {
+            label: "Новые фичи",
+            description: "повышение вовлеченности",
+          },
+          {
+            label: "Этап тестирования",
+            description: "запустили продукт на тестовый контур",
+          },
+          {
+            label: "UI-kit",
+            description: "наполнение ДС новыми компонентами, иконками",
+          },
+        ],
+        image: "/cases/sber-post-entry-results.png",
+      },
+
+      {
+        type: "context",
+        title: "Контекст",
+        subtitle: [
+          { text: "Раздел должен ", highlight: false },
+          { text: "формировать сообщество ", highlight: true },
+          { text: "инвесторов внутри продукта", highlight: false },
+        ],
+        image: "/cases/sber-post-entry-context.png",
+      },
+
+      {
+        type: "problem",
+        title: "Проблематика",
+        cards: [
+          {
+            title: "Слабая структура",
+            text: "нет пользовательской активности",
+          },
+          {
+            title: "Теряем пользователей",
+            text: "нет простого сценария для создания собственных постов",
+          },
+          {
+            title: "Нет активности",
+            text: "отсутствие мотивации делиться опытом",
+          },
+          {
+            title: "Низкое вовлечение",
+            text: "лента выглядит “как новостной агрегатор”",
+          },
+        ],
+        image: "/cases/sber-post-entry-problem.png",
+
+      },
+
+      {
+        type: "hypotheses",
+        title: "Гипотезы",
+        blocks: [
+          {
+            title: "Гипотезы",
+            scenarios: [
+              {
+                text: "Если добавить простой вход и персонализированные триггеры",
+                bullets: ["увеличится количество новых постов"],
+              },
+              {
+                text: "Если пользователи видят опытных инвесторов",
+                bullets: ["растет доверие", "снижается страх к инвестированию"],
+              },
+            ],
+          },
+          {
+            title: "Метрики",
+            bullets: [
+              "Количество созданных постов",
+              "Conversion в создание поста",
+              "Частота публикаций",
+              "Доля активных авторов",
+              "Повторные инвестиции",
+              "Конверсия в покупку после взаимодействия с постом",
+            ],
+          },
+        ],
+      },
+
+      {
+        type: "gallery",
+        images: ["/cases/sber-post-entry-hypothesis.png"],
+      },
+
+      {
+        type: "solution",
+        title: "Решение",
+        leftCards: [
+          {
+            title: "Точка входа",
+            text: "Добавлена закреплённая точка входа в создание поста",
+          },
+          {
+            title: "Персонализация",
+            text: "Предложена гипотеза персонализированных подсказок (например: «как прошла сделка?»)",
+          },
+        ],
+        image: "/cases/sber-post-entry-solution.png",
+        rightCards: [
+          {
+            title: "Редактирование",
+            text: "Добавлено редактирование постов через меню",
+          },
+          {
+            title: "Доступ",
+            text: "Реализована логика доступа: действия доступны после создания соц-профиля (ограничения)",
+          },
+          {
+            title: "Интеграция",
+            text: "Продумано поведение нового компонента при взаимодействии с новостной лентой",
+          },
+        ],
+      },
+
+      {
+        type: "why",
+        image: "/cases/sber-post-entry-why.png",
+      },
+
+      {
+        type: "results",
+        title: "Результаты",
+        items: [
+          {
+            label: "Новые фичи",
+            description: "повышение вовлеченности",
+          },
+          {
+            label: "Этап тестирования",
+            description: "запустили продукт на тестовый контур",
+          },
+          {
+            label: "UI-kit",
+            description: "наполнение ДС новыми компонентами, иконками",
+          },
+        ],
+      },
+
+      {
+        type: "gallery",
+        images: ["/cases/sber-post-entry-end.png"],
       },
 
       {

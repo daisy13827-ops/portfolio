@@ -100,7 +100,7 @@ export default function Page() {
           subtitle="Новостная лента и социальные механики (B2C • FinTech)"
         />
         <CaseCard
-          slug="sber-post-entry"
+          slug="sber-post-entry-v2"
           img="/cases/sber-2.png"
           title="Редизайн Сбер Инвестиции"
           subtitle="Точка входа в написание поста (B2C • FinTech)"

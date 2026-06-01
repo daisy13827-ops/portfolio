@@ -249,11 +249,13 @@ function renderSection(section: CaseSection, slug: string) {
 
         <div className="mt-[60px]" />
 
-        <img
-          src={section.imageFull}
-          className="w-full rounded-[30px]"
-          alt="problem-2"
-        />
+        {section.imageFull && (
+  <img
+    src={section.imageFull}
+    className="w-full rounded-[30px]"
+    alt="problem-2"
+  />
+)}
 
       </section>
     );
