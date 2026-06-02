@@ -53,11 +53,23 @@ export type CaseSection =
       title: string;
       leftCards: Array<{ title: string; text: string }>;
       image: string;
-      rightCards: Array<{ title: string; text: string }>;
+      rightCards: Array<{
+        title: string;
+        text: string;
+        highlightPrefix?: string;
+      }>;
     }
-  | {
+    | {
       type: "why";
       image: string;
+      title: string;
+      body: Array<{
+        segments: Array<{
+          text: string;
+          highlight?: boolean;
+        }>;
+        marginTop?: boolean;
+      }>;
     }
   | {
       type: "gallery";
@@ -224,6 +236,28 @@ export const cases: CaseStudy[] = [
       {
         type: "why",
         image: "/cases/sber-feed-why.png",
+        title: "Почему так?",
+        body: [
+          {
+            segments: [
+              {
+                text: "Я опиралась на паттерны поведения пользователей в соцсетях:",
+              },
+              {
+                text: " скроллинг → быстрый просмотр → вовлечение через взаимодействие",
+                highlight: true,
+              },
+            ],
+          },
+          {
+            marginTop: true,
+            segments: [
+              {
+                text: "Добавление социальных механик делает ленту живой и формирует привычку возвращаться в продукт.",
+              },
+            ],
+          },
+        ],
       },
 
       {
@@ -391,6 +425,35 @@ export const cases: CaseStudy[] = [
       {
         type: "why",
         image: "/cases/sber-post-entry-why.png",
+        title: "Почему так?",
+        body: [
+          {
+            segments: [
+              { text: "Я закладывала гипотезу, что:" },
+            ],
+          },
+          {
+            segments: [
+              { text: "персонализированные триггеры + простой вход" },
+            ],
+          },
+          {
+            segments: [{ text: "→ снижают барьер", highlight: true }],
+          },
+          {
+            segments: [
+              { text: "→ увеличивают количество постов", highlight: true },
+            ],
+          },
+          {
+            marginTop: true,
+            segments: [
+              {
+                text: "Создание контента — ключевая механика любой социальной платформы",
+              },
+            ],
+          },
+        ],
       },
 
       {
@@ -415,6 +478,197 @@ export const cases: CaseStudy[] = [
       {
         type: "gallery",
         images: ["/cases/sber-post-entry-end.png"],
+      },
+
+      {
+        type: "navigation",
+      },
+    ],
+  },
+
+  {
+    slug: "sber-post-editor",
+    title: "Редактор поста",
+    company: "Сбер Инвестиции",
+    tags: ["iOS", "Android", "B2C", "FinTech", "2025"],
+    heroImage: "/cases/sber-post-editor-hero.png",
+
+    sections: [
+      {
+        type: "results",
+        title: "Результаты",
+        items: [
+          {
+            label: "Новые фичи",
+            description: "обновлённый редактор постов (MVP)",
+          },
+          {
+            label: "Этап тестирования",
+            description: "запустили продукт на тестовый контур",
+          },
+          {
+            label: "UI-kit",
+            description: "наполнение DS новыми компонентами, иконками",
+          },
+        ],
+        image: "/cases/sber-post-editor-results.png",
+      },
+
+      {
+        type: "context",
+        title: "Контекст",
+        subtitle: [
+          { text: "Создание контента", highlight: true },
+          { text: " внутри инвестиционного приложения", highlight: false },
+        ],
+        image: "/cases/sber-post-editor-context.png",
+      },
+
+      {
+        type: "problem",
+        title: "Проблематика",
+        cards: [
+          {
+            title: "Для обычных пользователей",
+            text: "невозможность делиться своим опытом",
+          },
+          {
+            title: "Для эмитентов",
+            text: "доступ через админа",
+          },
+          {
+            title: "Для официальных каналов",
+            text: "обязательный заголовок, нет простого сценария создания постов",
+          },
+        ],
+        image: "/cases/sber-post-editor-problem.png",
+      },
+
+      {
+        type: "hypotheses",
+        title: "Гипотезы",
+        blocks: [
+          {
+            title: "Гипотезы",
+            scenarios: [
+              {
+                text: "Если добавить простой вход и персонализированные триггеры",
+                bullets: ["увеличится количество новых постов"],
+              },
+              {
+                text: "Если пользователи видят опытных инвесторов",
+                bullets: [
+                  "растёт доверие",
+                  "снижается страх к инвестированию",
+                ],
+              },
+            ],
+          },
+          {
+            title: "Метрики",
+            bullets: [
+              "Количество созданных постов",
+              "Conversion в создание поста",
+              "Частота публикаций",
+              "Доля активных авторов",
+              "Повторные инвестиции",
+              "Конверсия в покупку после взаимодействия с постом",
+            ],
+          },
+        ],
+      },
+
+      {
+        type: "gallery",
+        images: ["/cases/sber-post-editor-hypothesis.png"],
+      },
+
+      {
+        type: "solution",
+        title: "Решение",
+        leftCards: [
+          {
+            title: "Заголовок",
+            text: "Убрала обязательный заголовок и сделала опциональным",
+          },
+          {
+            title: "Контент",
+            text: "Добавила возможность: прикладывать изображения, использовать теги",
+          },
+        ],
+        image: "/cases/sber-post-editor-solution.png",
+        rightCards: [
+          {
+            title: "Состояния",
+            text: "Проработала состояния, ошибки, corner cases",
+          },
+          {
+            title: "Дизайн-система",
+            text: "Внедрила новые иконки и компоненты в дизайн-систему",
+          },
+          {
+            title: "Масштабирование",
+            text: "Заложила возможность масштабирования (видео и черновики)",
+            highlightPrefix: "Заложила возможность",
+          },
+        ],
+      },
+
+      {
+        type: "why",
+        image: "/cases/sber-post-editor-why.png",
+        title: "Почему так?",
+        body: [
+          {
+            segments: [
+              {
+                text: "Я опиралась на UX-паттерны социальных сетей: создание контента без усилий",
+              },
+            ],
+          },
+          {
+            segments: [
+              { text: "→ снижают барьер", highlight: true },
+            ],
+          },
+          {
+            segments: [
+              { text: "→ увеличивают количество постов", highlight: true },
+            ],
+          },
+          {
+            marginTop: true,
+            segments: [
+              {
+                text: "Снижение требований уменьшает когнитивную нагрузку и повышает вероятность публикации.",
+              },
+            ],
+          },
+        ],
+      },
+
+      {
+        type: "results",
+        title: "Результаты",
+        items: [
+          {
+            label: "Новые фичи",
+            description: "обновлённый редактор постов (MVP)",
+          },
+          {
+            label: "Этап тестирования",
+            description: "запустили продукт на тестовый контур",
+          },
+          {
+            label: "UI-kit",
+            description: "наполнение DS новыми компонентами, иконками",
+          },
+        ],
+      },
+
+      {
+        type: "gallery",
+        images: ["/cases/sber-post-editor-end.png"],
       },
 
       {

@@ -535,6 +535,10 @@ function renderSection(section: CaseSection, slug: string) {
               const words = card.text.split(" ");
               const firstWord = words.shift();
               const rest = words.join(" ");
+              const highlight = card.highlightPrefix ?? firstWord;
+              const body = card.highlightPrefix
+                ? card.text.slice(card.highlightPrefix.length).trim()
+                : rest;
 
               return (
                 <div
@@ -551,8 +555,8 @@ function renderSection(section: CaseSection, slug: string) {
                       letterSpacing: "0.7px",
                     }}
                   >
-                    <span style={{ color: "#8948F9" }}>{firstWord}</span>{" "}
-                    {rest}
+                    <span style={{ color: "#8948F9" }}>{highlight}</span>{" "}
+                    {body}
                   </div>
 
                   <div className="self-end text-[18px] text-black/30 font-normal">
@@ -578,17 +582,14 @@ function renderSection(section: CaseSection, slug: string) {
   if (section.type === "why") {
     return (
       <section className="mt-[60px]">
-  
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-[20px]">
-  
           <img
             src={section.image}
             className="w-full rounded-[30px]"
             alt="why"
           />
-  
-  <div className="flex flex-col pt-[80px] pr-[96px]">
-  
+
+          <div className="flex flex-col pt-[80px] pr-[96px]">
             <div
               style={{
                 fontFamily: "SF Pro Rounded, sans-serif",
@@ -599,33 +600,40 @@ function renderSection(section: CaseSection, slug: string) {
                 color: "#8948F9",
               }}
             >
-              Почему так?
+              {section.title}
             </div>
-  
+
             <div className="h-[12px]" />
-  
+
             <div
-  style={{
-    fontFamily: "SF Pro Rounded, sans-serif",
-    fontSize: "28px",
-    fontWeight: 600,
-    lineHeight: "36px",
-    letterSpacing: "0.7px",
-    color: "#000",
-  }}
->
-              Я опиралась на паттерны поведения пользователей в соцсетях:
-              <span style={{ color: "#8948F9" }}>
-                {" "}скроллинг → быстрый просмотр → вовлечение через взаимодействие
-              </span>
-              <br /><br />
-              Добавление социальных механик делает ленту живой и формирует привычку возвращаться в продукт.
+              style={{
+                fontFamily: "SF Pro Rounded, sans-serif",
+                fontSize: "28px",
+                fontWeight: 600,
+                lineHeight: "36px",
+                letterSpacing: "0.7px",
+              }}
+            >
+              {section.body.map((block, blockIndex) => (
+                <div
+                  key={blockIndex}
+                  className={block.marginTop ? "mt-[24px]" : undefined}
+                >
+                  {block.segments.map((segment, segmentIndex) => (
+                    <span
+                      key={segmentIndex}
+                      style={{
+                        color: segment.highlight ? "#8948F9" : "#000",
+                      }}
+                    >
+                      {segment.text}
+                    </span>
+                  ))}
+                </div>
+              ))}
             </div>
-  
           </div>
-  
         </div>
-  
       </section>
     );
   }
