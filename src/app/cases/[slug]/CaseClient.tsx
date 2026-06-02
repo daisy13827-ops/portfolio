@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 import Footer from "@/components/site/Footer";
@@ -8,7 +9,7 @@ import Container from "@/components/site/Container";
 import ScrollToTopButton from "@/components/site/ScrollToTopButton";
 
 import { links } from "@/data/links";
-import { CaseSection } from "@/data/cases";
+import { CaseSection, getCaseNeighbors } from "@/data/cases";
 
 /* =========================
     SOCIAL LINKS
@@ -647,6 +648,7 @@ function renderSection(section: CaseSection, slug: string) {
 
 export default function CaseClient({ currentCase }: any) {
   const router = useRouter();
+  const { prev, next } = getCaseNeighbors(currentCase.slug);
 
   return (
     <Container className="pb-[80px]">
@@ -728,97 +730,103 @@ export default function CaseClient({ currentCase }: any) {
       ))}
 
       {/* NAVIGATION */}
-<section className="mt-[60px] mb-[60px]">
+      <section className="mt-[60px] mb-[60px]">
+        <div className="w-full h-[124px] flex items-center justify-between px-[117px]">
+          {prev ? (
+            <button
+              type="button"
+              onClick={() => router.push(`/cases/${prev.slug}`)}
+              aria-label="Предыдущий кейс"
+              className="
+                w-[218px]
+                h-[78px]
+                rounded-[30px]
+                bg-[#F5F5F5]
+                flex items-center justify-center
+                transition-all duration-300
+                hover:bg-black
+                group
+              "
+            >
+              <img
+                src="/icons/arrow-left.svg"
+                className="w-[32px] h-[32px] group-hover:hidden"
+                alt=""
+              />
+              <img
+                src="/icons/arrow-left-white.svg"
+                className="w-[32px] h-[32px] hidden group-hover:block"
+                alt=""
+              />
+            </button>
+          ) : (
+            <div className="w-[218px] h-[78px]" aria-hidden />
+          )}
 
-<div className="w-full h-[124px] flex items-center justify-between px-[117px]">
+          <Link
+            href="/"
+            className="px-[32px] py-[20px] text-center hover:opacity-80 transition"
+          >
+            <div
+              style={{
+                fontFamily: "SF Pro Rounded, sans-serif",
+                fontSize: "42px",
+                fontWeight: 700,
+                lineHeight: "48px",
+                letterSpacing: "-0.2px",
+                color: "#000",
+              }}
+            >
+              Другие проекты
+            </div>
 
-  {/* LEFT BUTTON */}
-  <button
-    className="
-      w-[218px]
-      h-[78px]
-      rounded-[30px]
-      bg-[#F5F5F5]
-      flex items-center justify-center
-      transition-all duration-300
-      hover:bg-black
-      group
-    "
-  >
-    <img
-      src="/icons/arrow-left.svg"
-      className="w-[32px] h-[32px] group-hover:hidden"
-      alt="prev"
-    />
+            <div
+              className="mt-[8px]"
+              style={{
+                fontFamily: "SF Pro Rounded, sans-serif",
+                fontSize: "20px",
+                fontWeight: 600,
+                lineHeight: "28px",
+                letterSpacing: "0.7px",
+                color: "rgba(0,0,0,0.4)",
+              }}
+            >
+              Евгении Игнатовой
+            </div>
+          </Link>
 
-    <img
-      src="/icons/arrow-left-white.svg"
-      className="w-[32px] h-[32px] hidden group-hover:block"
-      alt="prev hover"
-    />
-  </button>
-
-  {/* CENTER */}
-  <div className="px-[32px] py-[20px] text-center">
-
-    <div
-      style={{
-        fontFamily: "SF Pro Rounded, sans-serif",
-        fontSize: "42px",
-        fontWeight: 700,
-        lineHeight: "48px",
-        letterSpacing: "-0.2px",
-        color: "#000",
-      }}
-    >
-      Другие проекты
-    </div>
-
-    <div
-      className="mt-[8px]"
-      style={{
-        fontFamily: "SF Pro Rounded, sans-serif",
-        fontSize: "20px",
-        fontWeight: 600,
-        lineHeight: "28px",
-        letterSpacing: "0.7px",
-        color: "rgba(0,0,0,0.4)",
-      }}
-    >
-      Евгении Игнатовой
-    </div>
-
-  </div>
-
-  {/* RIGHT BUTTON */}
-  <button
-    className="
-      w-[218px]
-      h-[78px]
-      rounded-[30px]
-      bg-[#F5F5F5]
-      flex items-center justify-center
-      transition-all duration-300
-      hover:bg-black
-      group
-    "
-  >
-    <img
-      src="/icons/arrow-right.svg"
-      className="w-[32px] h-[32px] group-hover:hidden"
-      alt="next"
-    />
-
-    <img
-      src="/icons/arrow-right-white.svg"
-      className="w-[32px] h-[32px] hidden group-hover:block"
-      alt="next hover"
-    />
-  </button>
-
-</div>
-
-</section>
+          {next ? (
+            <button
+              type="button"
+              onClick={() => router.push(`/cases/${next.slug}`)}
+              aria-label="Следующий кейс"
+              className="
+                w-[218px]
+                h-[78px]
+                rounded-[30px]
+                bg-[#F5F5F5]
+                flex items-center justify-center
+                transition-all duration-300
+                hover:bg-black
+                group
+              "
+            >
+              <img
+                src="/icons/arrow-right.svg"
+                className="w-[32px] h-[32px] group-hover:hidden"
+                alt=""
+              />
+              <img
+                src="/icons/arrow-right-white.svg"
+                className="w-[32px] h-[32px] hidden group-hover:block"
+                alt=""
+              />
+            </button>
+          ) : (
+            <div className="w-[218px] h-[78px]" aria-hidden />
+          )}
+        </div>
+      </section>
 
       <ScrollToTopButton />
       <Footer />
