@@ -676,6 +676,205 @@ export const cases: CaseStudy[] = [
       },
     ],
   },
+
+  {
+    slug: "sber-content-moderation",
+    title: "Инструмент модерации контента",
+    company: "Сбер Инвестиции",
+    tags: ["Админка", "Android", "B2C", "FinTech", "2025"],
+    heroImage: "/cases/sber-content-moderation-hero.png",
+
+    sections: [
+      {
+        type: "results",
+        title: "Результаты",
+        items: [
+          {
+            label: "Сервис для\nмодераторов",
+            description:
+              "интерфейс для обработки жалоб, постов и комментариев",
+          },
+          {
+            label: "Запуск продукта\nна пользователей",
+            description:
+              "внедрили систему в прод,\nсобрали реальные сценарии",
+          },
+          {
+            label: "Интервью\nс модераторами",
+            description: "провела пост-релизные\nинтервью",
+          },
+        ],
+        image: "/cases/sber-content-moderation-results.png",
+      },
+
+      {
+        type: "context",
+        title: "Контекст",
+        subtitle: [
+          { text: "Модерация", highlight: true },
+          { text: " и ", highlight: false },
+          { text: "публикация", highlight: true },
+          { text: " контента в соцсети. ", highlight: false },
+          { text: "Контроль качества", highlight: true },
+          { text: " контента и ", highlight: false },
+          { text: "обработка", highlight: true },
+          { text: " жалоб", highlight: false },
+        ],
+        image: "/cases/sber-content-moderation-context.png",
+      },
+
+      {
+        type: "problem",
+        title: "Проблематика",
+        cards: [
+          {
+            title: "Пользователи",
+            text: "• видят нежелательный контент\n• нет способа пожаловаться",
+          },
+          {
+            title: "Модераторы",
+            text: "• жалобы приходят из разных каналов\n• нет интерфейса обработки контента",
+          },
+          {
+            title: "Масштаб системы",
+            text: "• рост контента\n• ручная модерация не масштабируется\n• нет централизованной системы контроля",
+          },
+        ],
+        image: "/cases/sber-content-moderation-problem.png",
+      },
+
+      {
+        type: "hypotheses",
+        title: "Гипотезы",
+        blocks: [
+          {
+            title: "Гипотезы",
+            scenarios: [
+              {
+                text: "Если показывать количество жалоб на пост, модератор сможет быстрее определять приоритет проверки",
+                bullets: [],
+              },
+            ],
+          },
+          {
+            title: "Гипотезы",
+            scenarios: [
+              {
+                text: "Если не разделять жалобы по типам на первом экране, модератор будет быстрее принимать решения",
+                bullets: [],
+              },
+            ],
+          },
+          {
+            title: "Гипотезы",
+            scenarios: [
+              {
+                text: "Если дать возможность одобрять или пропускать пост без перехода внутрь, скорость модерации увеличится",
+                bullets: [],
+              },
+            ],
+          },
+          {
+            title: "Гипотезы",
+            scenarios: [
+              {
+                text: "Если показывать пост сразу в ленте модерации, модератор сможет принять решение без открытия карточки",
+                bullets: [],
+              },
+            ],
+          },
+        ],
+      },
+
+      {
+        type: "gallery",
+        images: ["/cases/sber-content-moderation-hypothesis.png"],
+      },
+
+      {
+        type: "solution",
+        title: "Решение",
+        leftCards: [
+          {
+            title: "Платформы",
+            text: "Спроектировала сервис для Android, Web",
+          },
+          {
+            title: "Сценарий",
+            text: "Спроектировала сценарий работы для модератора",
+          },
+        ],
+        image: "/cases/sber-content-moderation-solution.png",
+        rightCards: [
+          {
+            title: "Интервью",
+            text: "Провела глубинное интервью с модератором",
+          },
+          {
+            title: "Интерфейс",
+            text: "Упростила интерфейс взаимодействия с\u00A0контентом после интервью",
+          },
+          {
+            title: "Исследование",
+            text: "Выявила основные боли и\u00A0узкие места",
+          },
+        ],
+      },
+
+      {
+        type: "why",
+        image: "/cases/sber-content-moderation-why.png",
+        title: "Почему так?",
+        body: [
+          {
+            segments: [
+              {
+                text: "Модерация — критическая часть соцплатформы:",
+              },
+            ],
+          },
+          {
+            segments: [
+              {
+                text: "плохая модерация = плохой опыт пользователя",
+                highlight: true,
+              },
+            ],
+          },
+        ],
+      },
+
+      {
+        type: "results",
+        title: "Результаты",
+        items: [
+          {
+            label: "Сервис для\nмодераторов",
+            description:
+              "интерфейс для обработки жалоб, постов и комментариев",
+          },
+          {
+            label: "Запуск продукта\nна пользователей",
+            description:
+              "внедрили систему в прод,\nсобрали реальные сценарии",
+          },
+          {
+            label: "Интервью\nс модераторами",
+            description: "провела пост-релизные\nинтервью",
+          },
+        ],
+      },
+
+      {
+        type: "gallery",
+        images: ["/cases/sber-content-moderation-end.png"],
+      },
+
+      {
+        type: "navigation",
+      },
+    ],
+  },
 ];
 
 export function getCaseBySlug(slug: string) {

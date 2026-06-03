@@ -76,7 +76,7 @@ export default function Page() {
   };
 
   return (
-    <Container>
+    <Container className="pb-[80px]">
       <AboutMeHeader />
 
       <Spacer h={80} />
@@ -168,7 +168,7 @@ export default function Page() {
         />
       </CaseGrid>
 
-      <Spacer h={80} />
+      <Spacer h={60} />
 
       <Footer />
 

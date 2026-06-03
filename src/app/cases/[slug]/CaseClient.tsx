@@ -134,6 +134,7 @@ function renderSection(section: CaseSection, slug: string) {
                   letterSpacing: "0.7px",
                   color: "#8948F9",
                   textAlign: "center",
+                  whiteSpace: "pre-line",
                 }}
               >
                 {item.label}
@@ -150,6 +151,7 @@ function renderSection(section: CaseSection, slug: string) {
                   letterSpacing: "0.7px",
                   color: "rgba(0,0,0,0.4)",
                   textAlign: "center",
+                  whiteSpace: "pre-line",
                 }}
               >
                 {item.description}
@@ -202,7 +204,7 @@ function renderSection(section: CaseSection, slug: string) {
             {section.cards.map((card) => (
               <div
                 key={card.title}
-                className="bg-[#F5F5F5] rounded-[30px] p-[28px] flex-1 flex flex-col justify-center"
+                className="bg-[#F5F5F5] rounded-[30px] px-[28px] pb-[28px] pt-[28px] flex-1 flex flex-col justify-start"
               >
 
                 <div
@@ -228,6 +230,7 @@ function renderSection(section: CaseSection, slug: string) {
                     fontWeight: 600,
                     lineHeight: "28px",
                     letterSpacing: "0.7px",
+                    whiteSpace: "pre-line",
                   }}
                 >
                   {card.text}
@@ -319,9 +322,6 @@ function renderSection(section: CaseSection, slug: string) {
   ========================= */
 
   if (section.type === "hypotheses") {
-    const hypothesisBlock = section.blocks[0];
-    const metricsBlock = section.blocks[1];
-
     return (
       <section className="mt-[80px]">
 
@@ -335,106 +335,100 @@ function renderSection(section: CaseSection, slug: string) {
         </div>
 
         <div className="mt-[16px] grid grid-cols-1 md:grid-cols-2 gap-[20px]">
+          {section.blocks.map((block, blockIndex) => {
+            const showTitle =
+              block.title !== "Гипотезы" ||
+              slug === "sber-post-editor" ||
+              slug === "sber-feed-and-social" ||
+              slug === "sber-post-entry-v2";
 
-          <div className="bg-[#F5F5F5] rounded-[30px] p-[28px]">
-
-            <div
-              style={{
-                fontFamily: "SF Pro Rounded, sans-serif",
-                fontSize: "32px",
-                fontWeight: 600,
-                color: "#8948F9",
-                letterSpacing: "0.7px",
-              }}
-            >
-              {hypothesisBlock.title}
-            </div>
-
-            <div className="mt-[28px] flex flex-col gap-[24px]">
-
-              {"scenarios" in hypothesisBlock &&
-                hypothesisBlock.scenarios.map((s, i) => (
-                  <div key={i}>
-
-                    <div
-                      style={{
-                        fontFamily: "SF Pro Rounded, sans-serif",
-                        fontSize: "22px",
-                        fontWeight: 600,
-                        lineHeight: "28px",
-                        letterSpacing: "0.7px",
-                      }}
-                    >
-                      {s.text}
-                    </div>
-
-                    <ul className="mt-[12px] flex flex-col gap-[6px]">
-                      {s.bullets.map((b, idx) => (
-                        <li key={idx} className="flex gap-[10px] items-start">
-
-                          <div className="w-[6px] h-[6px] bg-black rounded-full mt-[10px]" />
-
-                          <div
-                            style={{
-                              fontFamily: "SF Pro Rounded, sans-serif",
-                              fontSize: "22px",
-                              fontWeight: 600,
-                              lineHeight: "28px",
-                              letterSpacing: "0.7px",
-                            }}
-                          >
-                            {b}
-                          </div>
-
-                        </li>
-                      ))}
-                    </ul>
-
+            return (
+              <div
+                key={blockIndex}
+                className="bg-[#F5F5F5] rounded-[30px] p-[28px]"
+              >
+                {showTitle && (
+                  <div
+                    style={{
+                      fontFamily: "SF Pro Rounded, sans-serif",
+                      fontSize: "32px",
+                      fontWeight: 600,
+                      color: "#8948F9",
+                      letterSpacing: "0.7px",
+                    }}
+                  >
+                    {block.title}
                   </div>
-                ))}
+                )}
 
-            </div>
-          </div>
+                <div
+                  className={`flex flex-col${showTitle ? " mt-[28px]" : ""}${
+                    "scenarios" in block ? " gap-[24px]" : " gap-[12px]"
+                  }`}
+                >
+                  {"scenarios" in block &&
+                    block.scenarios.map((s, i) => (
+                      <div key={i}>
+                        <div
+                          style={{
+                            fontFamily: "SF Pro Rounded, sans-serif",
+                            fontSize: "22px",
+                            fontWeight: 600,
+                            lineHeight: "28px",
+                            letterSpacing: "0.7px",
+                          }}
+                        >
+                          {s.text}
+                        </div>
 
-          <div className="bg-[#F5F5F5] rounded-[30px] p-[28px]">
+                        {s.bullets.length > 0 && (
+                          <ul className="mt-[12px] flex flex-col gap-[6px]">
+                            {s.bullets.map((b, idx) => (
+                              <li
+                                key={idx}
+                                className="flex gap-[10px] items-start"
+                              >
+                                <div className="w-[6px] h-[6px] bg-black rounded-full mt-[10px]" />
 
-            <div
-              style={{
-                fontFamily: "SF Pro Rounded, sans-serif",
-                fontSize: "32px",
-                fontWeight: 600,
-                color: "#8948F9",
-              }}
-            >
-              {metricsBlock.title}
-            </div>
+                                <div
+                                  style={{
+                                    fontFamily: "SF Pro Rounded, sans-serif",
+                                    fontSize: "22px",
+                                    fontWeight: 600,
+                                    lineHeight: "28px",
+                                    letterSpacing: "0.7px",
+                                  }}
+                                >
+                                  {b}
+                                </div>
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+                      </div>
+                    ))}
 
-            <div className="mt-[28px] flex flex-col gap-[12px]">
+                  {"bullets" in block &&
+                    block.bullets.map((b, i) => (
+                      <div key={i} className="flex gap-[10px] items-start">
+                        <div className="w-[6px] h-[6px] bg-black rounded-full mt-[10px]" />
 
-              {"bullets" in metricsBlock &&
-                metricsBlock.bullets.map((b, i) => (
-                  <div key={i} className="flex gap-[10px] items-start">
-
-                    <div className="w-[6px] h-[6px] bg-black rounded-full mt-[10px]" />
-
-                    <div
-                      style={{
-                        fontFamily: "SF Pro Rounded, sans-serif",
-                        fontSize: "22px",
-                        fontWeight: 600,
-                        lineHeight: "28px",
-                      }}
-                    >
-                      {b}
-                    </div>
-
-                  </div>
-                ))}
-
-            </div>
-
-          </div>
-
+                        <div
+                          style={{
+                            fontFamily: "SF Pro Rounded, sans-serif",
+                            fontSize: "22px",
+                            fontWeight: 600,
+                            lineHeight: "28px",
+                          }}
+                        >
+                          {b}
+                        </div>
+                      </div>
+                    ))}
+                </div>
+              </div>
+            );
+          })}
         </div>
 
       </section>
