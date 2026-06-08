@@ -96,7 +96,12 @@ function SocialLinks() {
     RENDER SECTION
 ========================= */
 
-function renderSection(section: CaseSection, slug: string) {
+function renderSection(
+  section: CaseSection,
+  slug: string,
+  accent: string,
+  cardBg: string,
+) {
 
   /* =========================
       RESULTS
@@ -132,7 +137,7 @@ function renderSection(section: CaseSection, slug: string) {
                   fontWeight: 600,
                   lineHeight: "38px",
                   letterSpacing: "0.7px",
-                  color: "#8948F9",
+                  color: accent,
                   textAlign: "center",
                   whiteSpace: "pre-line",
                 }}
@@ -204,13 +209,14 @@ function renderSection(section: CaseSection, slug: string) {
             {section.cards.map((card) => (
               <div
                 key={card.title}
-                className="bg-[#F5F5F5] rounded-[30px] px-[28px] pb-[28px] pt-[28px] flex-1 flex flex-col justify-start"
+                className="rounded-[30px] px-[28px] pb-[28px] pt-[28px] flex-1 flex flex-col justify-start"
+                style={{ backgroundColor: cardBg }}
               >
 
                 <div
                   style={{
                     fontFamily: "SF Pro Rounded, sans-serif",
-                    color: "#8948F9",
+                    color: accent,
                     fontSize: "32px",
                     fontWeight: 600,
                     lineHeight: "38px",
@@ -297,7 +303,7 @@ function renderSection(section: CaseSection, slug: string) {
             {section.subtitle.map((part, i) => (
               <span
                 key={i}
-                style={{ color: part.highlight ? "#8948F9" : "#000" }}
+                style={{ color: part.highlight ? accent : "#000" }}
               >
                 {part.text}
               </span>
@@ -345,7 +351,8 @@ function renderSection(section: CaseSection, slug: string) {
             return (
               <div
                 key={blockIndex}
-                className="bg-[#F5F5F5] rounded-[30px] p-[28px]"
+                className="rounded-[30px] p-[28px]"
+                style={{ backgroundColor: cardBg }}
               >
                 {showTitle && (
                   <div
@@ -353,7 +360,7 @@ function renderSection(section: CaseSection, slug: string) {
                       fontFamily: "SF Pro Rounded, sans-serif",
                       fontSize: "32px",
                       fontWeight: 600,
-                      color: "#8948F9",
+                      color: accent,
                       letterSpacing: "0.7px",
                     }}
                   >
@@ -484,11 +491,16 @@ function renderSection(section: CaseSection, slug: string) {
               const words = card.text.split(" ");
               const firstWord = words.shift();
               const rest = words.join(" ");
+              const highlight = card.highlightPrefix ?? firstWord;
+              const body = card.highlightPrefix
+                ? card.text
+                : rest;
 
               return (
                 <div
                   key={i}
-                  className="bg-[#F5F5F5] rounded-[30px] p-[20px] flex-1 flex justify-between gap-[8px]"
+                  className="rounded-[30px] p-[20px] flex-1 flex justify-between gap-[8px]"
+                  style={{ backgroundColor: cardBg }}
                 >
 
                   <div
@@ -498,10 +510,11 @@ function renderSection(section: CaseSection, slug: string) {
                       fontWeight: 600,
                       lineHeight: "36px",
                       letterSpacing: "0.7px",
+                      whiteSpace: "pre-line",
                     }}
                   >
-                    <span style={{ color: "#8948F9" }}>{firstWord}</span>{" "}
-                    {rest}
+                    <span style={{ color: accent }}>{highlight}</span>{" "}
+                    {body}
                   </div>
 
                   <div className="self-end text-[18px] text-black/30 font-normal">
@@ -531,14 +544,13 @@ function renderSection(section: CaseSection, slug: string) {
               const firstWord = words.shift();
               const rest = words.join(" ");
               const highlight = card.highlightPrefix ?? firstWord;
-              const body = card.highlightPrefix
-                ? card.text.slice(card.highlightPrefix.length).trim()
-                : rest;
+              const body = card.highlightPrefix ? card.text : rest;
 
               return (
                 <div
                   key={i}
-                  className="bg-[#F5F5F5] rounded-[30px] p-[20px] flex-1 flex justify-between gap-[8px]"
+                  className="rounded-[30px] p-[20px] flex-1 flex justify-between gap-[8px]"
+                  style={{ backgroundColor: cardBg }}
                 >
 
                   <div
@@ -548,9 +560,10 @@ function renderSection(section: CaseSection, slug: string) {
                       fontWeight: 600,
                       lineHeight: "36px",
                       letterSpacing: "0.7px",
+                      whiteSpace: "pre-line",
                     }}
                   >
-                    <span style={{ color: "#8948F9" }}>{highlight}</span>{" "}
+                    <span style={{ color: accent }}>{highlight}</span>{" "}
                     {body}
                   </div>
 
@@ -592,7 +605,7 @@ function renderSection(section: CaseSection, slug: string) {
                 fontWeight: 600,
                 lineHeight: "38px",
                 letterSpacing: "0.7px",
-                color: "#8948F9",
+                color: accent,
               }}
             >
               {section.title}
@@ -618,7 +631,7 @@ function renderSection(section: CaseSection, slug: string) {
                     <span
                       key={segmentIndex}
                       style={{
-                        color: segment.highlight ? "#8948F9" : "#000",
+                        color: segment.highlight ? accent : "#000",
                       }}
                     >
                       {segment.text}
@@ -720,7 +733,14 @@ export default function CaseClient({ currentCase }: any) {
 
       {/* CONTENT */}
       {currentCase.sections.map((section: CaseSection, i: number) => (
-        <div key={i}>{renderSection(section, currentCase.slug)}</div>
+        <div key={i}>
+          {renderSection(
+            section,
+            currentCase.slug,
+            currentCase.accentColor ?? "#8948F9",
+            currentCase.cardBackground ?? "#F5F5F5",
+          )}
+        </div>
       ))}
 
       {/* NAVIGATION */}

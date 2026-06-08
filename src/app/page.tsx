@@ -136,7 +136,7 @@ export default function Page() {
 
       <div className="w-full">
         <CaseCard
-          slug="opening-dos"
+          slug="broker-account-opening"
           img="/cases/opening-1.png"
           title="ДОС"
           subtitle="Дистанционное открытие счета (B2C • FinTech)"

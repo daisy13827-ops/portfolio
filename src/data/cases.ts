@@ -51,7 +51,11 @@ export type CaseSection =
   | {
       type: "solution";
       title: string;
-      leftCards: Array<{ title: string; text: string }>;
+      leftCards: Array<{
+        title: string;
+        text: string;
+        highlightPrefix?: string;
+      }>;
       image: string;
       rightCards: Array<{
         title: string;
@@ -85,6 +89,8 @@ export type CaseStudy = {
   company: string;
   tags: string[];
   heroImage: string;
+  accentColor?: string;
+  cardBackground?: string;
   sections: CaseSection[];
 };
 
@@ -868,6 +874,212 @@ export const cases: CaseStudy[] = [
       {
         type: "gallery",
         images: ["/cases/sber-content-moderation-end.png"],
+      },
+
+      {
+        type: "navigation",
+      },
+    ],
+  },
+
+  {
+    slug: "broker-account-opening",
+    title: "Дистанционное открытие счёта",
+    company: "Открытие Брокер",
+    tags: ["Web", "B2C", "FinTech", "2023"],
+    accentColor: "#28C970",
+    cardBackground: "#F3F9FC",
+    heroImage: "/cases/broker-account-opening-hero.png",
+
+    sections: [
+      {
+        type: "results",
+        title: "Результаты",
+        items: [
+          {
+            label: "+18% к началу\nрегистрации",
+            description: "повысило доверие\nпользователей",
+          },
+          {
+            label: "-50% времени на\nоткрытие счёта",
+            description:
+              "путь стал проще —\u00A0вместо\n\n~20 минут,\u00A0теперь ~10",
+          },
+          {
+            label: "Рост завершённых\nзаявок",
+            description: "пользователи реже бросали\nпроцесс на середине",
+          },
+        ],
+        image: "/cases/broker-account-opening-results.png",
+      },
+
+      {
+        type: "context",
+        title: "Контекст",
+        subtitle: [
+          { text: "Проект позволял пользователям ", highlight: false },
+          { text: "открыть", highlight: true },
+          { text: " брокерский счёт ", highlight: false },
+          { text: "онлайн", highlight: true },
+          { text: ", без визита в офис", highlight: false },
+        ],
+        image: "/cases/broker-account-opening-context.png",
+      },
+
+      {
+        type: "problem",
+        title: "Проблематика",
+        cards: [
+          {
+            title: "Недоверие на 1-м шаге",
+            text: "Пользователи часто не оставляли номер телефона и уходили из сценария",
+          },
+          {
+            title: "Сложная форма ввода",
+            text: "Длинный ручной ввод создавал высокую когнитивную нагрузку",
+          },
+          {
+            title: "Ошибки при заполнении",
+            text: "Пользователи ошибались при вводе персональных данных",
+          },
+          {
+            title: "Нет альтернативных сценариев",
+            text: "Данные заполнялись вручную",
+          },
+        ],
+        image: "/cases/broker-account-opening-problem.png",
+        imageFull: "/cases/broker-account-opening-problem-extra.png",
+      },
+
+      {
+        type: "hypotheses",
+        title: "Гипотезы",
+        blocks: [
+          {
+            title: "Гипотезы",
+            scenarios: [
+              {
+                text: "Добавление ясных объяснений на первом шаге снизит сомнения пользователей и повысит конверсию",
+                bullets: [],
+              },
+            ],
+          },
+          {
+            title: "Гипотезы",
+            scenarios: [
+              {
+                text: "Если предложить альтернативные способы ввода (Госуслуги / автораспознавание), сократится время",
+                bullets: [],
+              },
+            ],
+          },
+          {
+            title: "Гипотезы",
+            scenarios: [
+              {
+                text: "Если разбить форму на шаги, пользователи будут меньше ошибаться и чаще завершать сценарий",
+                bullets: [],
+              },
+            ],
+          },
+          {
+            title: "Гипотезы",
+            scenarios: [
+              {
+                text: "Если показать правила фото паспорта, пользователи будут реже ошибаться и загружать корректные снимки",
+                bullets: [],
+              },
+            ],
+          },
+        ],
+      },
+
+      {
+        type: "gallery",
+        images: ["/cases/broker-account-opening-hypothesis.png"],
+      },
+
+      {
+        type: "solution",
+        title: "Решение",
+        leftCards: [
+          {
+            title: "",
+            text: "регистрации за счёт дробления формы",
+            highlightPrefix: "Упростила сценарий",
+          },
+          {
+            title: "",
+            text: "вход через Госуслуги и автозаполнение по паспорту",
+            highlightPrefix: "Добавила",
+          },
+        ],
+        image: "/cases/broker-account-opening-solution.png",
+        rightCards: [
+          {
+            title: "",
+            text: "на первом шаге\nс\u00A0помощью коротких пояснений",
+            highlightPrefix: "Снизила барьеры",
+          },
+          {
+            title: "",
+            text: "правила фото паспорта перед загрузкой",
+            highlightPrefix: "Внедрила",
+          },
+          {
+            title: "",
+            text: "сбор обратной связи после завершения сценария",
+            highlightPrefix: "Внедрила",
+          },
+        ],
+      },
+
+      {
+        type: "why",
+        image: "/cases/broker-account-opening-why.png",
+        title: "Почему так?",
+        body: [
+          {
+            segments: [
+              {
+                text: "Пользователи быстрее проходят простые сценарии и чаще бросают сложные",
+              },
+            ],
+          },
+          {
+            marginTop: true,
+            segments: [
+              {
+                text: "Поэтому я упростила процесс регистрации, чтобы проще завершить открытие счёта",
+              },
+            ],
+          },
+        ],
+      },
+
+      {
+        type: "results",
+        title: "Результаты",
+        items: [
+          {
+            label: "+18% к началу\nрегистрации",
+            description: "повысило доверие\nпользователей",
+          },
+          {
+            label: "-50% времени на\nоткрытие счёта",
+            description:
+              "путь стал проще —\u00A0вместо\n\n~20 минут,\u00A0теперь ~10",
+          },
+          {
+            label: "Рост завершённых\nзаявок",
+            description: "пользователи реже бросали\nпроцесс на середине",
+          },
+        ],
+      },
+
+      {
+        type: "gallery",
+        images: ["/cases/broker-account-opening-end.png"],
       },
 
       {
